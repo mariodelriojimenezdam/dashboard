@@ -349,7 +349,7 @@ class _DashboardLayoutController<T extends DashboardItem> with ChangeNotifier {
   void addAll(List<DashboardItem> items) {
     for (var item in items) {
       _layouts![item.identifier] = _ItemCurrentLayout(item.layoutData);
-      mountToTop(item.identifier);
+      mountItems();
     }
     notifyListeners();
   }
