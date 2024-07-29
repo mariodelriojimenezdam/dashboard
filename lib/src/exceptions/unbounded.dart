@@ -18,8 +18,7 @@ class Unbounded implements Exception {
   final Axis axis;
 
   @override
-  String toString() {
-    return "Unbounded ${axis == Axis.vertical ? "width" : "height"}\n"
-        "BoxConstrains: $constraints";
-  }
+  String toString() =>
+      "Unbounded ${axis == Axis.vertical ? "width" : "height"}\n"
+      "BoxConstrains: $constraints";
 }

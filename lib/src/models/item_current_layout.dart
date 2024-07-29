@@ -13,33 +13,27 @@ class _ItemCurrentPosition {
 
   double get endY => y + height;
 
-  _ItemCurrentPosition operator +(_ItemCurrentPosition other) {
-    return _ItemCurrentPosition(
-        height: height + other.height,
-        width: width + other.width,
-        y: y + other.y,
-        x: x + other.x);
-  }
+  _ItemCurrentPosition operator +(_ItemCurrentPosition other) =>
+      _ItemCurrentPosition(
+          height: height + other.height,
+          width: width + other.width,
+          y: y + other.y,
+          x: x + other.x);
 
-  _ItemCurrentPosition operator *(double multiplier) {
-    return _ItemCurrentPosition(
-        height: height * multiplier,
-        width: width * multiplier,
-        y: y * multiplier,
-        x: x * multiplier);
-  }
+  _ItemCurrentPosition operator *(double multiplier) => _ItemCurrentPosition(
+      height: height * multiplier,
+      width: width * multiplier,
+      y: y * multiplier,
+      x: x * multiplier);
 
-  bool equal(_ItemCurrentPosition other) {
-    return x == other.x &&
-        y == other.y &&
-        width == other.width &&
-        height == other.height;
-  }
+  bool equal(_ItemCurrentPosition other) =>
+      x == other.x &&
+      y == other.y &&
+      width == other.width &&
+      height == other.height;
 
   @override
-  String toString() {
-    return "ITEM_CURRENT($x, $y , $width , $height)";
-  }
+  String toString() => "ITEM_CURRENT($x, $y , $width , $height)";
 }
 
 abstract class _Change {
@@ -56,9 +50,8 @@ class _Resizing extends _Change {
       : super(direction, increment);
 
   @override
-  String toString() {
-    return "RESIZE ${increment ? "increment" : "decrement"} $direction";
-  }
+  String toString() =>
+      "RESIZE ${increment ? "increment" : "decrement"} $direction";
 
   @override
   ItemLayout back(ItemLayout layout) {
@@ -86,9 +79,8 @@ class _Moving extends _Change {
       : super(direction, increment);
 
   @override
-  String toString() {
-    return "MOVE: ${increment ? "increment" : "decrement"} $direction";
-  }
+  String toString() =>
+      "MOVE: ${increment ? "increment" : "decrement"} $direction";
 
   @override
   ItemLayout back(ItemLayout layout) {
@@ -186,9 +178,7 @@ class _ItemCurrentLayout extends ChangeNotifier implements ItemLayout {
   bool get _haveLocation => origin._haveLocation;
 
   @override
-  set _haveLocation(bool haveLocation) {
-    origin._haveLocation = haveLocation;
-  }
+  set _haveLocation(bool haveLocation) => origin._haveLocation = haveLocation;
 
   /*
       ValueNotifier(ItemCurrentPosition(y: 0, x: 0, height: 0, width: 0))*/
@@ -204,10 +194,9 @@ class _ItemCurrentLayout extends ChangeNotifier implements ItemLayout {
   }
 
   @override
-  String toString() {
-    return "current: (startX: $startX , startY: $startY , width: $width , height: $height)"
-        "\n origin: ($origin)";
-  }
+  String toString() =>
+      "current: (startX: $startX , startY: $startY , width: $width , height: $height)"
+      "\n origin: ($origin)";
 
   _ItemCurrentPosition _currentPosition(
       {required _ViewportDelegate viewportDelegate,
@@ -226,13 +215,9 @@ class _ItemCurrentLayout extends ChangeNotifier implements ItemLayout {
         x: (startX * slotEdge) + viewportDelegate.padding.left + leftPad);
   }
 
-  double get _slotEdge {
-    return _layoutController.slotEdge;
-  }
+  double get _slotEdge => _layoutController.slotEdge;
 
-  double get _verticalSlotEdge {
-    return _layoutController.verticalSlotEdge;
-  }
+  double get _verticalSlotEdge => _layoutController.verticalSlotEdge;
 
   double _clampDifLeft(double x) {
     var slot = _slotEdge;
@@ -260,13 +245,12 @@ class _ItemCurrentLayout extends ChangeNotifier implements ItemLayout {
     );
   }
 
-  _ResizeMoveResult _resizeMove({
-    required List<AxisDirection> holdDirections,
-    required Offset local,
-    required Offset start,
-    required double scrollDifference,
-    required void Function(String id) onChange,
-  }) {
+  _ResizeMoveResult _resizeMove(
+      {required List<AxisDirection> holdDirections,
+      required Offset local,
+      required Offset start,
+      required double scrollDifference,
+      required void Function(String id) onChange}) {
     var difference = local - start;
     difference += Offset(0, scrollDifference);
     if (holdDirections.isEmpty || (difference == Offset.zero)) {
@@ -793,8 +777,8 @@ class _ItemCurrentLayout extends ChangeNotifier implements ItemLayout {
           _layoutController.getIndex([newStartX + 1, newStartY]),
 
           /// right - bottom
-          _layoutController.getIndex([newStartX + 1, newStartY + 1]),
-        ],
+          _layoutController.getIndex([newStartX + 1, newStartY + 1])
+        ]
       ]);
       _exTrying = slotIndex;
     }
@@ -885,17 +869,11 @@ class _ItemCurrentLayout extends ChangeNotifier implements ItemLayout {
     _change = true;
   }
 
-  bool get isLeftSide {
-    return startX == 0;
-  }
+  bool get isLeftSide => startX == 0;
 
-  bool get isRightSide {
-    return (_endIndex + 1) % (_layoutController.slotCount) == 0;
-  }
+  bool get isRightSide => (_endIndex + 1) % (_layoutController.slotCount) == 0;
 
-  bool get isTopSide {
-    return startY == 0;
-  }
+  bool get isTopSide => startY == 0;
 
   bool get isBottomSide {
     var last = (_layoutController._endsTree.lastKey())!;
@@ -932,97 +910,69 @@ class _ItemCurrentLayout extends ChangeNotifier implements ItemLayout {
   int? _height;
 
   @override
-  int get height {
-    return _height ?? origin.height;
-  }
+  int get height => _height ?? origin.height;
 
   @override
-  int? get maxHeight {
-    return origin.maxHeight;
-  }
+  int? get maxHeight => origin.maxHeight;
 
   @override
-  int? get maxWidth {
-    return origin.maxWidth;
-  }
+  int? get maxWidth => origin.maxWidth;
 
   @override
-  int get minHeight {
-    return origin.minHeight;
-  }
+  int get minHeight => origin.minHeight;
 
   @override
-  int get minWidth {
-    return origin.minWidth;
-  }
+  int get minWidth => origin.minWidth;
 
   int? _startX;
 
   @override
-  int get startX {
-    return _startX ?? origin.startX;
-  }
+  int get startX => _startX ?? origin.startX;
 
   @protected
-  set startX(int v) {
-    _startX = v;
-  }
+  set startX(int v) => _startX = v;
 
   int? _startY;
 
   @override
-  int get startY {
-    return _startY ?? origin.startY;
-  }
+  int get startY => _startY ?? origin.startY;
 
   @protected
-  set startY(int v) {
-    _startY = v;
-  }
+  set startY(int v) => _startY = v;
 
   int? _width;
 
   @override
-  int get width {
-    return _width ?? origin.width;
-  }
+  int get width => _width ?? origin.width;
 
-  _ItemCurrentLayout copy() {
-    return _ItemCurrentLayout(origin.copyWithStarts())
-      ..indexes = List.from(indexes)
-      .._layoutController = _layoutController
-      .._endIndex = _endIndex
-      .._startIndex = _startIndex
-      .._transform = _transform
-      .._resizePosition = _resizePosition
-      ..id = id;
-  }
+  _ItemCurrentLayout copy() => _ItemCurrentLayout(origin.copyWithStarts())
+    ..indexes = List.from(indexes)
+    .._layoutController = _layoutController
+    .._endIndex = _endIndex
+    .._startIndex = _startIndex
+    .._transform = _transform
+    .._resizePosition = _resizePosition
+    ..id = id;
 
   @override
-  Map<String, dynamic> toMap() {
-    throw UnimplementedError();
-  }
+  Map<String, dynamic> toMap() => throw UnimplementedError();
 
   ///
   @override
-  ItemLayout copyWithStarts({int? startX, int? startY, int? endX, int? endY}) {
-    throw UnimplementedError();
-  }
+  ItemLayout copyWithStarts({int? startX, int? startY, int? endX, int? endY}) =>
+      throw UnimplementedError();
 
   @override
-  ItemLayout copyWithDimension({int? width, int? height}) {
-    throw UnimplementedError();
-  }
+  ItemLayout copyWithDimension({int? width, int? height}) =>
+      throw UnimplementedError();
 
-  ItemLayout asLayout() {
-    return ItemLayout(
-        startX: startX,
-        startY: startY,
-        width: width,
-        height: height,
-        minHeight: minHeight,
-        minWidth: minWidth,
-        maxWidth: maxWidth,
-        maxHeight: maxHeight);
-  }
+  ItemLayout asLayout() => ItemLayout(
+      startX: startX,
+      startY: startY,
+      width: width,
+      height: height,
+      minHeight: minHeight,
+      minWidth: minWidth,
+      maxWidth: maxWidth,
+      maxHeight: maxHeight);
 }

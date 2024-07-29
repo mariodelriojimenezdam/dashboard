@@ -193,9 +193,7 @@ class _DashboardState<T extends DashboardItem> extends State<Dashboard<T>>
   @override
   void initState() {
     _layoutController = _DashboardLayoutController<T>();
-    _layoutController.addListener(() {
-      setState(() {});
-    });
+    _layoutController.addListener(() => setState(() {}));
 
     widget.dashboardItemController._attach(_layoutController);
     if (_withDelegate) {
@@ -371,13 +369,11 @@ class _DashboardState<T extends DashboardItem> extends State<Dashboard<T>>
           _building = false;
 
           return widget.loadingPlaceholder ??
-              const Center(
-                child: CircularProgressIndicator(),
-              );
+              const Center(child: CircularProgressIndicator());
         }
       }
 
-      return Scrollable(
+      return ScrollableDragFix(
           physics: scrollable
               ? widget.physics
               : const NeverScrollableScrollPhysics(),
@@ -394,14 +390,9 @@ class _DashboardState<T extends DashboardItem> extends State<Dashboard<T>>
             _building = false;
             return _DashboardStack<T>(
                 itemStyle: widget.itemStyle,
-                shouldCalculateNewDimensions: () {
-                  _setNewOffset(o, constrains);
-                },
-                onScrollStateChange: (st) {
-                  setState(() {
-                    scrollable = st;
-                  });
-                },
+                shouldCalculateNewDimensions: () =>
+                    _setNewOffset(o, constrains),
+                onScrollStateChange: (st) => setState(() => scrollable = st),
                 maxScrollOffset: _maxExtend,
                 editModeSettings: widget.editModeSettings,
                 cacheExtend: widget.cacheExtend,
@@ -424,11 +415,9 @@ class _ItemCurrentPositionTween extends Tween<_ItemCurrentPosition> {
   bool onlyDimensions;
 
   @override
-  _ItemCurrentPosition lerp(double t) {
-    return _ItemCurrentPosition(
-        width: begin!.width * (1.0 - t) + end!.width * t,
-        height: begin!.height * (1.0 - t) + end!.height * t,
-        x: onlyDimensions ? end!.x : begin!.x * (1.0 - t) + end!.x * t,
-        y: onlyDimensions ? end!.y : begin!.y * (1.0 - t) + end!.y * t);
-  }
+  _ItemCurrentPosition lerp(double t) => _ItemCurrentPosition(
+      width: begin!.width * (1.0 - t) + end!.width * t,
+      height: begin!.height * (1.0 - t) + end!.height * t,
+      x: onlyDimensions ? end!.x : begin!.x * (1.0 - t) + end!.x * t,
+      y: onlyDimensions ? end!.y : begin!.y * (1.0 - t) + end!.y * t);
 }

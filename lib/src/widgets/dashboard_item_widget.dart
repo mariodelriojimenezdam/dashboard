@@ -40,9 +40,7 @@ class _DashboardItemWidgetState extends State<_DashboardItemWidget>
     super.dispose();
   }
 
-  _listen() {
-    setState(() {});
-  }
+  _listen() => setState(() {});
 
   late AnimationController _multiplierAnimationController;
 
@@ -108,16 +106,12 @@ class _DashboardItemWidgetState extends State<_DashboardItemWidget>
       cursor = SystemMouseCursors.move;
     }
     if (this.cursor != cursor) {
-      setState(() {
-        this.cursor = cursor;
-      });
+      setState(() => this.cursor = cursor);
     }
   }
 
   void _exit(PointerExitEvent exit) {
-    setState(() {
-      cursor = MouseCursor.defer;
-    });
+    setState(() => cursor = MouseCursor.defer);
   }
 
   Offset transform = Offset.zero;
@@ -164,12 +158,11 @@ class _DashboardItemWidgetState extends State<_DashboardItemWidget>
 
   ItemLayout? _exLayout;
 
-  bool equal() {
-    return _exLayout!.startX == widget.itemCurrentLayout.startX &&
-        _exLayout!.startY == widget.itemCurrentLayout.startY &&
-        _exLayout!.width == widget.itemCurrentLayout.width &&
-        _exLayout!.height == widget.itemCurrentLayout.height;
-  }
+  bool equal() =>
+      _exLayout!.startX == widget.itemCurrentLayout.startX &&
+      _exLayout!.startY == widget.itemCurrentLayout.startY &&
+      _exLayout!.width == widget.itemCurrentLayout.width &&
+      _exLayout!.height == widget.itemCurrentLayout.height;
 
   bool onAnimation = false;
   DateTime? animationStart;
@@ -185,11 +178,7 @@ class _DashboardItemWidgetState extends State<_DashboardItemWidget>
 
       if (kIsWeb) {
         result = MouseRegion(
-          cursor: cursor,
-          onHover: _hover,
-          onExit: _exit,
-          child: result,
-        );
+            cursor: cursor, onHover: _hover, onExit: _exit, child: result);
       }
     }
 
@@ -260,48 +249,48 @@ class _DashboardItemWidgetState extends State<_DashboardItemWidget>
     }
 
     return AnimatedBuilder(
-      animation: Listenable.merge([
-        if (widget.itemCurrentLayout._resizePosition != null)
-          widget.itemCurrentLayout._resizePosition,
-        if (widget.itemCurrentLayout._transform != null)
-          widget.itemCurrentLayout._transform,
-        if (_animation != null) _animation,
-        if (onEditMode) _multiplierAnimationController,
-      ]),
-      child: result,
-      builder: (c, w) {
-        var m = _multiplierAnimationController.value;
+        animation: Listenable.merge([
+          if (widget.itemCurrentLayout._resizePosition != null)
+            widget.itemCurrentLayout._resizePosition,
+          if (widget.itemCurrentLayout._transform != null)
+            widget.itemCurrentLayout._transform,
+          if (_animation != null) _animation,
+          if (onEditMode) _multiplierAnimationController
+        ]),
+        child: result,
+        builder: (c, w) {
+          var m = _multiplierAnimationController.value;
 
-        var p = widget.itemCurrentLayout._resizePosition?.value;
+          var p = widget.itemCurrentLayout._resizePosition?.value;
 
-        var cp = onAnimation
-            ? (_animation?.value ?? widget.itemGlobalPosition)
-            : widget.itemGlobalPosition;
+          var cp = onAnimation
+              ? (_animation?.value ?? widget.itemGlobalPosition)
+              : widget.itemGlobalPosition;
 
-        if (p != null) {
-          if (_lastPosition != null) {
-            p = _lastPosition! * m;
+          if (p != null) {
+            if (_lastPosition != null) {
+              p = _lastPosition! * m;
+            }
+            cp += p;
           }
-          cp += p;
-        }
-        double left = cp.x, top = cp.y;
+          double left = cp.x, top = cp.y;
 
-        var o = widget.itemCurrentLayout._transform?.value;
+          var o = widget.itemCurrentLayout._transform?.value;
 
-        if (o != null) {
-          if (_lastTransform != null) {
-            o = _lastTransform! * m;
+          if (o != null) {
+            if (_lastTransform != null) {
+              o = _lastTransform! * m;
+            }
+            left += o.dx;
+            top += o.dy;
           }
-          left += o.dx;
-          top += o.dy;
-        }
 
-        return Positioned(
-            left: left,
-            top: top - widget.offset.pixels,
-            width: cp.width,
-            height: cp.height,
-            child: /*widget.layoutController.isEditing &&
+          return Positioned(
+              left: left,
+              top: top - widget.offset.pixels,
+              width: cp.width,
+              height: cp.height,
+              child: /*widget.layoutController.isEditing &&
                     widget.editModeSettings.paintItemForeground
                 ? CustomPaint(
                     child: w!,
@@ -312,8 +301,7 @@ class _DashboardItemWidgetState extends State<_DashboardItemWidget>
                             maxHeight: cp.height, maxWidth: cp.width)),
                   )
                 :*/
-                w!);
-      },
-    );
+                  w!);
+        });
   }
 }

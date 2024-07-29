@@ -5,19 +5,19 @@ part of dashboard;
 class EditModeSettings {
   /// duration default is package:flutter/foundation.dart
   /// [kThemeAnimationDuration]
-  EditModeSettings({
-    this.resizeCursorSide = 10,
-    this.paintBackgroundLines = true,
-    this.fillEditingBackground = true,
-    this.longPressEnabled = true,
-    this.panEnabled = true,
-    this.backgroundStyle = const EditModeBackgroundStyle(),
-    //this.foregroundStyle = const EditModeForegroundStyle(),
-    this.curve = Curves.easeInOut,
-    Duration? duration,
-    //this.paintItemForeground = true,
-    this.shrinkOnMove = true,
-  }) : duration = duration ?? kThemeAnimationDuration;
+  EditModeSettings(
+      {this.resizeCursorSide = 10,
+      this.paintBackgroundLines = true,
+      this.fillEditingBackground = true,
+      this.longPressEnabled = true,
+      this.panEnabled = true,
+      this.backgroundStyle = const EditModeBackgroundStyle(),
+      //this.foregroundStyle = const EditModeForegroundStyle(),
+      this.curve = Curves.easeInOut,
+      Duration? duration,
+      //this.paintItemForeground = true,
+      this.shrinkOnMove = true})
+      : duration = duration ?? kThemeAnimationDuration;
 
   /// Animation duration
   final Duration duration;
@@ -47,5 +47,5 @@ class EditModeSettings {
 
   /// Background style
   final EditModeBackgroundStyle backgroundStyle;
-  //final EditModeForegroundStyle foregroundStyle;
+//final EditModeForegroundStyle foregroundStyle;
 }

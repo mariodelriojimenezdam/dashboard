@@ -103,16 +103,16 @@ class _AnimatedBackgroundPainterState extends State<_AnimatedBackgroundPainter>
           builder: (context, child) {
             _last = _animation!.value;
             return CustomPaint(
-              painter: _EditModeBackgroundPainter(
-                  verticalSlotEdge: widget.layoutController.verticalSlotEdge,
-                  fillPosition: _animation!.value,
-                  slotCount: widget.layoutController.slotCount,
-                  style: widget.editModeSettings.backgroundStyle,
-                  slotEdge: widget.layoutController.slotEdge,
-                  offset: widget.offset.pixels,
-                  viewportDelegate: widget.layoutController._viewportDelegate),
-              isComplex: true,
-            );
+                painter: _EditModeBackgroundPainter(
+                    verticalSlotEdge: widget.layoutController.verticalSlotEdge,
+                    fillPosition: _animation!.value,
+                    slotCount: widget.layoutController.slotCount,
+                    style: widget.editModeSettings.backgroundStyle,
+                    slotEdge: widget.layoutController.slotEdge,
+                    offset: widget.offset.pixels,
+                    viewportDelegate:
+                        widget.layoutController._viewportDelegate),
+                isComplex: true);
           });
     } else {
       _last = null;
@@ -121,16 +121,15 @@ class _AnimatedBackgroundPainterState extends State<_AnimatedBackgroundPainter>
       _animationController.duration = widget.editModeSettings.duration;
       offset = widget.offset.pixels;
       return CustomPaint(
-        painter: _EditModeBackgroundPainter(
-            fillPosition: fillRect,
-            verticalSlotEdge: widget.layoutController.verticalSlotEdge,
-            slotCount: widget.layoutController.slotCount,
-            style: widget.editModeSettings.backgroundStyle,
-            slotEdge: widget.layoutController.slotEdge,
-            offset: widget.offset.pixels,
-            viewportDelegate: widget.layoutController._viewportDelegate),
-        isComplex: false,
-      );
+          painter: _EditModeBackgroundPainter(
+              fillPosition: fillRect,
+              verticalSlotEdge: widget.layoutController.verticalSlotEdge,
+              slotCount: widget.layoutController.slotCount,
+              style: widget.editModeSettings.backgroundStyle,
+              slotEdge: widget.layoutController.slotEdge,
+              offset: widget.offset.pixels,
+              viewportDelegate: widget.layoutController._viewportDelegate),
+          isComplex: false);
     }
   }
 }

@@ -81,12 +81,9 @@ class _DashboardStackState<T extends DashboardItem>
     super.dispose();
   }
 
-  void _listen() {
-    setState(() {});
-  }
+  void _listen() => setState(() {});
 
-  Widget buildPositioned(List list) {
-    return _DashboardItemWidget(
+  Widget buildPositioned(List list) => _DashboardItemWidget(
       style: widget.itemStyle,
       key: _keys[list[2]]!,
       itemGlobalPosition: (list[0] as _ItemCurrentLayout)._currentPosition(
@@ -98,9 +95,7 @@ class _DashboardStackState<T extends DashboardItem>
       editModeSettings: widget.editModeSettings,
       child: list[1],
       offset: viewportOffset,
-      layoutController: widget.dashboardController,
-    );
-  }
+      layoutController: widget.dashboardController);
 
   late double slotEdge;
   late double verticalSlotEdge;
@@ -124,7 +119,7 @@ class _DashboardStackState<T extends DashboardItem>
         child: widget.itemBuilder(i),
         //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
-      id,
+      id
     ];
 
     _keys[id] ??= GlobalKey<_DashboardItemWidgetState>();
@@ -216,12 +211,10 @@ class _DashboardStackState<T extends DashboardItem>
       addWidget(edit.id);
     }
 
-    Widget result = Stack(
-      clipBehavior: Clip.hardEdge,
-      children: [
-        if (widget.editModeSettings.paintBackgroundLines &&
-            widget.dashboardController.isEditing)
-          Positioned(
+    Widget result = Stack(clipBehavior: Clip.hardEdge, children: [
+      if (widget.editModeSettings.paintBackgroundLines &&
+          widget.dashboardController.isEditing)
+        Positioned(
             top: viewportDelegate.padding.top,
             left: viewportDelegate.padding.left,
             width: viewportDelegate.constraints.maxWidth -
@@ -233,60 +226,47 @@ class _DashboardStackState<T extends DashboardItem>
                   layoutController: widget.dashboardController,
                   editModeSettings: widget.editModeSettings,
                   offset: viewportOffset);
-            }),
-          ),
-        ..._widgetsMap.entries
-            .where((element) =>
-                element.value[2] !=
-                widget.dashboardController.editSession?.editing.id)
-            .map((e) {
-          return buildPositioned(e.value);
-        }).toList(),
-        ...?(widget.dashboardController.editSession == null
-            ? null
-            : [
-                buildPositioned(_widgetsMap[
-                    widget.dashboardController.editSession?.editing.id]!)
-              ])
-      ],
-    );
+            })),
+      ..._widgetsMap.entries
+          .where((element) =>
+              element.value[2] !=
+              widget.dashboardController.editSession?.editing.id)
+          .map((e) => buildPositioned(e.value))
+          .toList(),
+      ...?(widget.dashboardController.editSession == null
+          ? null
+          : [
+              buildPositioned(_widgetsMap[
+                  widget.dashboardController.editSession?.editing.id]!)
+            ])
+    ]);
 
     if (widget.dashboardController.isEditing) {
       result = GestureDetector(
-        onPanStart: widget.editModeSettings.panEnabled
-            ? (panStart) {
-                _onMoveStart(panStart.localPosition);
-              }
-            : null,
-        onPanUpdate: widget.editModeSettings.panEnabled
-            ? (u) {
-                setSpeed(u.localPosition);
-                _onMoveUpdate(u.localPosition);
-              }
-            : null,
-        onPanEnd: widget.editModeSettings.panEnabled
-            ? (e) {
-                _onMoveEnd();
-              }
-            : null,
-        onLongPressStart: widget.editModeSettings.longPressEnabled
-            ? (longPressStart) {
-                _onMoveStart(longPressStart.localPosition);
-              }
-            : null,
-        onLongPressMoveUpdate: widget.editModeSettings.longPressEnabled
-            ? (u) {
-                setSpeed(u.localPosition);
-                _onMoveUpdate(u.localPosition);
-              }
-            : null,
-        onLongPressEnd: widget.editModeSettings.longPressEnabled
-            ? (e) {
-                _onMoveEnd();
-              }
-            : null,
-        child: result,
-      );
+          onPanStart: widget.editModeSettings.panEnabled
+              ? (panStart) => _onMoveStart(panStart.localPosition)
+              : null,
+          onPanUpdate: widget.editModeSettings.panEnabled
+              ? (u) {
+                  setSpeed(u.localPosition);
+                  _onMoveUpdate(u.localPosition);
+                }
+              : null,
+          onPanEnd:
+              widget.editModeSettings.panEnabled ? (e) => _onMoveEnd() : null,
+          onLongPressStart: widget.editModeSettings.longPressEnabled
+              ? (longPressStart) => _onMoveStart(longPressStart.localPosition)
+              : null,
+          onLongPressMoveUpdate: widget.editModeSettings.longPressEnabled
+              ? (u) {
+                  setSpeed(u.localPosition);
+                  _onMoveUpdate(u.localPosition);
+                }
+              : null,
+          onLongPressEnd: widget.editModeSettings.longPressEnabled
+              ? (e) => _onMoveEnd()
+              : null,
+          child: result);
     }
     return result;
   }
@@ -423,9 +403,7 @@ class _DashboardStackState<T extends DashboardItem>
         var resizeMoveResult = _editing!._resizeMove(
             holdDirections: _holdDirections!,
             local: local,
-            onChange: (s) {
-              difs.add(s);
-            },
+            onChange: (s) => difs.add(s),
             start: _moveStartOffset!,
             scrollDifference: scrollDifference);
 

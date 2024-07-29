@@ -21,11 +21,10 @@ class DashboardItemController<T extends DashboardItem> with ChangeNotifier {
   /// You can define items with constructor.
   /// But the layout information is only for the session.
   /// Changes cannot be handled.
-  DashboardItemController({
-    required List<T> items,
-  })  : _items = items.asMap().map(
-              (key, value) => MapEntry(value.identifier, value),
-            ),
+  DashboardItemController({required List<T> items})
+      : _items = items
+            .asMap()
+            .map((key, value) => MapEntry(value.identifier, value)),
         itemStorageDelegate = null;
 
   /// You can create [DashboardItemController] with an [itemStorageDelegate].
@@ -50,9 +49,7 @@ class DashboardItemController<T extends DashboardItem> with ChangeNotifier {
   bool get isEditing => _layoutController!.isEditing;
 
   /// Change editing status.
-  set isEditing(bool value) {
-    _layoutController!.isEditing = value;
-  }
+  set isEditing(bool value) => _layoutController!.isEditing = value;
 
   /// Add new item to Dashboard.
   ///
@@ -130,9 +127,7 @@ class DashboardItemController<T extends DashboardItem> with ChangeNotifier {
   }
 
   /// Clear all items from Dashboard.
-  void clear() {
-    return deleteAll(items);
-  }
+  void clear() => deleteAll(items);
 
   T _getItemWithLayout(String id) {
     if (!_isAttached) throw Exception("Not Attached");
@@ -210,7 +205,6 @@ class DashboardItemController<T extends DashboardItem> with ChangeNotifier {
 // void slideToTopAll() {
 //   return _layoutController!._slideToTopAll();
 // }
-
 }
 
 ///
@@ -238,9 +232,7 @@ class _DashboardLayoutController<T extends DashboardItem> with ChangeNotifier {
 
   bool _isEditing = false;
 
-  bool get isEditing {
-    return _isEditing;
-  }
+  bool get isEditing => _isEditing;
 
   set isEditing(bool value) {
     if (value != _isEditing) {
@@ -267,10 +259,8 @@ class _DashboardLayoutController<T extends DashboardItem> with ChangeNotifier {
 
   _EditSession? editSession;
 
-  void startEdit(String id, bool transform) {
-    editSession = _EditSession(
-        layoutController: this, editing: _layouts![id]!, transform: transform);
-  }
+  void startEdit(String id, bool transform) => editSession = _EditSession(
+      layoutController: this, editing: _layouts![id]!, transform: transform);
 
   void saveEditSession() {
     if (editSession == null) return;
@@ -278,9 +268,7 @@ class _DashboardLayoutController<T extends DashboardItem> with ChangeNotifier {
     if (editSession!._changes.isNotEmpty) {
       itemController.itemStorageDelegate?._onItemsUpdated(
           editSession!._changes
-              .map(
-                (e) => itemController._getItemWithLayout(e),
-              )
+              .map((e) => itemController._getItemWithLayout(e))
               .toList(),
           slotCount);
       for (var i in editSession!._changes) {
@@ -431,18 +419,14 @@ class _DashboardLayoutController<T extends DashboardItem> with ChangeNotifier {
       return [null, null];
     }
 
-    possibilities.removeWhere((element) {
-      return (element.w < itemLayout.minWidth ||
-          element.h < itemLayout.minHeight);
-    });
+    possibilities.removeWhere((element) =>
+        (element.w < itemLayout.minWidth || element.h < itemLayout.minHeight));
 
     if (possibilities.isEmpty) {
       return [itemLayout.startX, itemLayout.startY];
     }
 
-    possibilities.sort((a, b) {
-      return b.compareTo(a);
-    });
+    possibilities.sort((a, b) => b.compareTo(a));
 
     var p = possibilities.first;
 
@@ -790,10 +774,9 @@ class _DashboardLayoutController<T extends DashboardItem> with ChangeNotifier {
 
   void _setSizes(BoxConstraints constrains, double vertical) {
     verticalSlotEdge = vertical;
-    slotEdge = (_axis == Axis.vertical
-            ? constrains.maxWidth
-            : constrains.maxHeight) /
-        slotCount;
+    slotEdge =
+        (_axis == Axis.vertical ? constrains.maxWidth : constrains.maxHeight) /
+            slotCount;
   }
 
   late bool animateEverytime;
@@ -834,14 +817,7 @@ class _OverflowPossibility extends Comparable<_OverflowPossibility> {
   int x, y, w, h, sq;
 
   @override
-  int compareTo(_OverflowPossibility other) {
-    return sq.compareTo(other.sq);
-  }
-
-  @override
-  String toString() {
-    return super.toString();
-  }
+  int compareTo(_OverflowPossibility other) => sq.compareTo(other.sq);
 }
 
 ///
@@ -856,12 +832,11 @@ class _EditSession {
   bool transform;
 
   ///
-  bool get isEqual {
-    return editing.startX == editingOrigin.startX &&
-        editing.startY == editingOrigin.startY &&
-        editing.width == editingOrigin.width &&
-        editing.height == editingOrigin.height;
-  }
+  bool get isEqual =>
+      editing.startX == editingOrigin.startX &&
+      editing.startY == editingOrigin.startY &&
+      editing.width == editingOrigin.width &&
+      editing.height == editingOrigin.height;
 
   List<String> get _changes {
     var changes = <String>[];

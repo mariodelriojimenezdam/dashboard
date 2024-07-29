@@ -35,10 +35,9 @@ class DashboardItem {
   DashboardItem.withLayout(this.identifier, this.layoutData);
 
   /// Converts json encodable Map to items to create from storage.
-  factory DashboardItem.fromMap(Map<String, dynamic> map) {
-    return DashboardItem.withLayout(
-        map["item_id"], ItemLayout.fromMap(map["layout"]));
-  }
+  factory DashboardItem.fromMap(Map<String, dynamic> map) =>
+      DashboardItem.withLayout(
+          map["item_id"], ItemLayout.fromMap(map["layout"]));
 
   /// It contains the location and dimensions of the Item on the Dashboard.
   ItemLayout layoutData;
@@ -49,7 +48,6 @@ class DashboardItem {
   String identifier;
 
   /// Converts items to json encodable Map to store their layout.
-  Map<String, dynamic> toMap() {
-    return {"item_id": identifier, "layout": layoutData.toMap()};
-  }
+  Map<String, dynamic> toMap() =>
+      {"item_id": identifier, "layout": layoutData.toMap()};
 }

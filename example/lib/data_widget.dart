@@ -32,9 +32,7 @@ class DataWidget extends StatelessWidget {
   };
 
   @override
-  Widget build(BuildContext context) {
-    return _map[item.data]!(item);
-  }
+  Widget build(BuildContext context) => _map[item.data]!(item);
 }
 
 class Pub extends StatelessWidget {
@@ -43,19 +41,15 @@ class Pub extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        launchUrlString("https://pub.dev/packages/dashboard");
-      },
-      child: Container(
-        color: Colors.white,
+        onTap: () => launchUrlString("https://pub.dev/packages/dashboard"),
         child: Container(
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.contain,
-                    image: AssetImage("assets/pub_dev.png")))),
-      ),
-    );
+            color: Colors.white,
+            child: Container(
+                alignment: Alignment.center,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.contain,
+                        image: AssetImage("assets/pub_dev.png"))))));
   }
 }
 
@@ -65,30 +59,23 @@ class LinkedIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        launchUrlString("https://www.linkedin.com/in/mehmetyaz/");
-      },
-      child: Container(
-        color: const Color(0xFF0A66C2),
-        child: Row(
-          children: [
-            const Expanded(
-                child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text("Connect Me!", style: TextStyle(color: Colors.white)),
-            )),
-            Expanded(
-              child: Container(
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.contain,
-                          image: AssetImage("assets/linkedin.png")))),
-            ),
-          ],
-        ),
-      ),
-    );
+        onTap: () => launchUrlString("https://www.linkedin.com/in/mehmetyaz/"),
+        child: Container(
+            color: const Color(0xFF0A66C2),
+            child: Row(children: [
+              const Expanded(
+                  child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("Connect Me!",
+                          style: TextStyle(color: Colors.white)))),
+              Expanded(
+                  child: Container(
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.contain,
+                              image: AssetImage("assets/linkedin.png")))))
+            ])));
   }
 }
 
@@ -98,30 +85,23 @@ class Twitter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        launchUrlString("https://twitter.com/smehmetyaz");
-      },
-      child: Container(
-        color: const Color(0xFF1DA0F1),
-        child: Row(
-          children: [
-            const Expanded(
-                child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text("Follow Me!", style: TextStyle(color: Colors.white)),
-            )),
-            Expanded(
-              child: Container(
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.contain,
-                          image: AssetImage("assets/twitter.png")))),
-            ),
-          ],
-        ),
-      ),
-    );
+        onTap: () => launchUrlString("https://twitter.com/smehmetyaz"),
+        child: Container(
+            color: const Color(0xFF1DA0F1),
+            child: Row(children: [
+              const Expanded(
+                  child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("Follow Me!",
+                          style: TextStyle(color: Colors.white)))),
+              Expanded(
+                  child: Container(
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.contain,
+                              image: AssetImage("assets/twitter.png")))))
+            ])));
   }
 }
 
@@ -131,34 +111,24 @@ class Github extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        launchUrlString("https://github.com/Mehmetyaz/dashboard");
-      },
-      child: Container(
-        color: Colors.white,
-        child: Row(
-          children: [
-            const Expanded(
-                child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "Create Issue!",
-                style: TextStyle(color: Colors.black),
-              ),
-            )),
-            Expanded(
-              child: Container(
-                  margin: const EdgeInsets.all(5),
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.contain,
-                          image: AssetImage("assets/github.png")))),
-            ),
-          ],
-        ),
-      ),
-    );
+        onTap: () => launchUrlString("https://github.com/Mehmetyaz/dashboard"),
+        child: Container(
+            color: Colors.white,
+            child: Row(children: [
+              const Expanded(
+                  child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("Create Issue!",
+                          style: TextStyle(color: Colors.black)))),
+              Expanded(
+                  child: Container(
+                      margin: const EdgeInsets.all(5),
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.contain,
+                              image: AssetImage("assets/github.png")))))
+            ])));
   }
 }
 
@@ -168,15 +138,12 @@ class BuyMee extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        launchUrlString("https://www.buymeacoffee.com/mehmetyaz");
-      },
-      child: Container(
-          alignment: Alignment.center,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  fit: BoxFit.cover, image: AssetImage("assets/img.png")))),
-    );
+        onTap: () => launchUrlString("https://www.buymeacoffee.com/mehmetyaz"),
+        child: Container(
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.cover, image: AssetImage("assets/img.png")))));
   }
 }
 
@@ -191,38 +158,34 @@ class InfoAdvice extends StatelessWidget {
         color: blue,
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        child: Column(
-          children: [
-            const Text("Example dimensions and locations. (showing this)",
-                style: TextStyle(color: Colors.white)),
-            Expanded(
+        child: Column(children: [
+          const Text("Example dimensions and locations. (showing this)",
+              style: TextStyle(color: Colors.white)),
+          Expanded(
               child: Container(
-                alignment: Alignment.center,
-                child: DataTable(
-                    dataRowHeight: 25,
-                    headingRowHeight: 25,
-                    border: const TableBorder(
-                        horizontalInside: BorderSide(color: Colors.white)),
-                    headingTextStyle: const TextStyle(color: Colors.white),
-                    dataTextStyle: const TextStyle(color: Colors.white),
-                    columns: const [
-                      DataColumn(label: Text("startX")),
-                      DataColumn(label: Text("startY")),
-                      DataColumn(label: Text("width")),
-                      DataColumn(label: Text("height"))
-                    ],
-                    rows: [
-                      DataRow(cells: [
-                        DataCell(Text(layout.startX.toString())),
-                        DataCell(Text(layout.startY.toString())),
-                        DataCell(Text(layout.width.toString())),
-                        DataCell(Text(layout.height.toString())),
-                      ])
-                    ]),
-              ),
-            ),
-          ],
-        ));
+                  alignment: Alignment.center,
+                  child: DataTable(
+                      dataRowMinHeight: 25,
+                      headingRowHeight: 25,
+                      border: const TableBorder(
+                          horizontalInside: BorderSide(color: Colors.white)),
+                      headingTextStyle: const TextStyle(color: Colors.white),
+                      dataTextStyle: const TextStyle(color: Colors.white),
+                      columns: const [
+                        DataColumn(label: Text("startX")),
+                        DataColumn(label: Text("startY")),
+                        DataColumn(label: Text("width")),
+                        DataColumn(label: Text("height"))
+                      ],
+                      rows: [
+                        DataRow(cells: [
+                          DataCell(Text(layout.startX.toString())),
+                          DataCell(Text(layout.startY.toString())),
+                          DataCell(Text(layout.width.toString())),
+                          DataCell(Text(layout.height.toString()))
+                        ])
+                      ])))
+        ]));
   }
 }
 
@@ -235,25 +198,18 @@ class DefaultAdvice extends StatelessWidget {
         color: yellow,
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            Icon(
-              Icons.refresh,
-              size: 30,
-              color: Colors.white,
-            ),
-            Expanded(
-              child: Text(
-                "Your layout changes saved locally."
-                " Set default with this button.",
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white),
-              ),
-            )
-          ],
-        ));
+        child: const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(Icons.refresh, size: 30, color: Colors.white),
+              Expanded(
+                  child: Text(
+                      "Your layout changes saved locally."
+                      " Set default with this button.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white)))
+            ]));
   }
 }
 
@@ -266,22 +222,15 @@ class ClearAdvice extends StatelessWidget {
         color: green,
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            Icon(
-              Icons.delete,
-              size: 30,
-              color: Colors.white,
-            ),
-            Text(
-              "Delete all widgets.",
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white),
-            )
-          ],
-        ));
+        child: const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(Icons.delete, size: 30, color: Colors.white),
+              Text("Delete all widgets.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white))
+            ]));
   }
 }
 
@@ -294,22 +243,15 @@ class AddAdvice extends StatelessWidget {
         color: blue,
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            Icon(
-              Icons.add,
-              size: 30,
-              color: Colors.white,
-            ),
-            Text(
-              "Add own colored widget with custom sizes.",
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white),
-            )
-          ],
-        ));
+        child: const Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(Icons.add, size: 30, color: Colors.white),
+              Text("Add own colored widget with custom sizes.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white))
+            ]));
   }
 }
 
@@ -322,30 +264,23 @@ class TransformAdvice extends StatelessWidget {
         color: red,
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              "Users can move widgets.",
-              style: TextStyle(color: Colors.white, fontSize: 13),
-              textAlign: TextAlign.center,
-            ),
-            const Text(
-              "To try moving, hold (or long press) the widget and move.",
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white, fontSize: 13),
-            ),
-            Row(
-              children: const [
+        child: const Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text("Users can move widgets.",
+                  style: TextStyle(color: Colors.white, fontSize: 13),
+                  textAlign: TextAlign.center),
+              Text("To try moving, hold (or long press) the widget and move.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, fontSize: 13)),
+              Row(children: [
                 Expanded(
-                  child: Text(
-                    "While moving, it shrinks if possible according to the "
-                    "minimum width and height values.\n(This min w: 2 , h: 2)",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white, fontSize: 13),
-                  ),
-                ),
+                    child: Text(
+                        "While moving, it shrinks if possible according to the "
+                        "minimum width and height values.\n(This min w: 2 , h: 2)",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white, fontSize: 13))),
 /*
                 Icon(
                   Icons.arrow_right_alt,
@@ -353,10 +288,8 @@ class TransformAdvice extends StatelessWidget {
                   size: 30,
                 )
 */
-              ],
-            ),
-          ],
-        ));
+              ])
+            ]));
   }
 }
 
@@ -368,26 +301,23 @@ class WelcomeWidget extends StatelessWidget {
     return Container(
         color: red,
         alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            RichText(
-                text: TextSpan(
-                    style: const TextStyle(color: Colors.white, fontSize: 20),
-                    children: [
-                  const TextSpan(text: "Welcome to "),
-                  TextSpan(
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          launchUrlString("https://pub.dev/packages/dashboard");
-                        },
-                      text: "dashboard",
-                      style: const TextStyle(
-                          decoration: TextDecoration.underline)),
-                  const TextSpan(text: " online demo!"),
-                ])),
-          ],
-        ));
+        child:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+          RichText(
+              text: TextSpan(
+                  style: const TextStyle(color: Colors.white, fontSize: 20),
+                  children: [
+                const TextSpan(text: "Welcome to "),
+                TextSpan(
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () =>
+                          launchUrlString("https://pub.dev/packages/dashboard"),
+                    text: "dashboard",
+                    style:
+                        const TextStyle(decoration: TextDecoration.underline)),
+                const TextSpan(text: " online demo!"),
+              ]))
+        ]));
   }
 }
 
@@ -400,41 +330,33 @@ class BasicDescription extends StatelessWidget {
         color: yellow,
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const AutoSizeText(
-                "Each widget on the screen is called \"DashboardItem\"",
-                maxLines: 4,
-                style: TextStyle(color: Colors.white, fontSize: 13),
-                textAlign: TextAlign.center),
-            const AutoSizeText("Each has a location and dimensions by slots.",
-                maxLines: 3,
-                style: TextStyle(color: Colors.white, fontSize: 13),
-                textAlign: TextAlign.center),
-            Row(
-              children: [
-                const Expanded(
-                  child: AutoSizeText(
-                      "You can switch to edit mode to see these slots.",
-                      maxLines: 4,
-                      style: TextStyle(color: Colors.white, fontSize: 13),
-                      textAlign: TextAlign.center),
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                Column(
-                  children: const [
-                    Text("Tap: ",
-                        style: TextStyle(color: Colors.white, fontSize: 10)),
-                    Icon(Icons.edit, color: Colors.white),
-                  ],
-                )
-              ],
-            ),
-          ],
-        ));
+        child: const Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              AutoSizeText(
+                  "Each widget on the screen is called \"DashboardItem\"",
+                  maxLines: 4,
+                  style: TextStyle(color: Colors.white, fontSize: 13),
+                  textAlign: TextAlign.center),
+              AutoSizeText("Each has a location and dimensions by slots.",
+                  maxLines: 3,
+                  style: TextStyle(color: Colors.white, fontSize: 13),
+                  textAlign: TextAlign.center),
+              Row(children: [
+                Expanded(
+                    child: AutoSizeText(
+                        "You can switch to edit mode to see these slots.",
+                        maxLines: 4,
+                        style: TextStyle(color: Colors.white, fontSize: 13),
+                        textAlign: TextAlign.center)),
+                SizedBox(width: 8),
+                Column(children: [
+                  Text("Tap: ",
+                      style: TextStyle(color: Colors.white, fontSize: 10)),
+                  Icon(Icons.edit, color: Colors.white)
+                ])
+              ])
+            ]));
   }
 }
 
@@ -448,19 +370,17 @@ class AdviceResize extends StatelessWidget {
     return Container(
         color: green,
         alignment: Alignment.center,
-        child: Row(
-          children: [
-            Container(
+        child: Row(children: [
+          Container(
               margin: const EdgeInsets.only(left: 5),
               height: double.infinity,
               width: 1,
-              color: Colors.white,
-            ),
-            Expanded(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
+              color: Colors.white),
+          const Expanded(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
                 AutoSizeText("Users can resize widgets.",
                     maxLines: 2,
                     style: TextStyle(color: Colors.white, fontSize: 13),
@@ -474,10 +394,8 @@ class AdviceResize extends StatelessWidget {
                 AutoSizeText("Don't forget switch to edit mode.",
                     maxLines: 3,
                     style: TextStyle(color: Colors.white, fontSize: 13),
-                    textAlign: TextAlign.center),
-              ],
-            ))
-          ],
-        ));
+                    textAlign: TextAlign.center)
+              ]))
+        ]));
   }
 }

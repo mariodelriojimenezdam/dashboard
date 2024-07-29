@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
 class ItemStyle {
-  const ItemStyle({
-    this.color,
-    this.shadowColor,
-    this.shape,
-    this.borderOnForeground,
-    this.clipBehavior,
-    this.animationDuration,
-    this.type,
-    this.elevation,
-    this.borderRadius,
-    this.textStyle,
-  });
+  const ItemStyle(
+      {this.color,
+      this.shadowColor,
+      this.shape,
+      this.borderOnForeground,
+      this.clipBehavior,
+      this.animationDuration,
+      this.type,
+      this.elevation,
+      this.borderRadius,
+      this.textStyle});
 
   /// The kind of material to show (e.g., card or canvas). This
   /// affects the shape of the widget, the roundness of its corners if

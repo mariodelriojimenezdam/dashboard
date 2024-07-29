@@ -19,14 +19,13 @@ class EditModeBackgroundStyle {
       this.fillColor = Colors.black38});
 
   @override
-  bool operator ==(Object other) {
-    return other is EditModeBackgroundStyle &&
-        dualLineVertical == other.dualLineVertical &&
-        dualLineHorizontal == other.dualLineHorizontal &&
-        lineWidth == other.lineWidth &&
-        lineColor == other.lineColor &&
-        fillColor == other.fillColor;
-  }
+  bool operator ==(Object other) =>
+      other is EditModeBackgroundStyle &&
+      dualLineVertical == other.dualLineVertical &&
+      dualLineHorizontal == other.dualLineHorizontal &&
+      lineWidth == other.lineWidth &&
+      lineColor == other.lineColor &&
+      fillColor == other.fillColor;
 
   /// Editing item background filling color.
   final Color fillColor;

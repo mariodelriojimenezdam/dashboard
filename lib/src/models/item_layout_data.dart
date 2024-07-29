@@ -34,35 +34,30 @@ class ItemLayout {
         assert(maxHeight == null || maxHeight >= height),
         assert(maxWidth == null || maxWidth >= width);
 
-  factory ItemLayout.fromMap(Map<String, dynamic> map) {
-    return ItemLayout(
-        startX: map["s_X"],
-        startY: map["s_Y"],
-        width: map["w"],
-        height: map["h"],
-        maxHeight: map["max_H"],
-        maxWidth: map["max_W"],
-        minHeight: map["min_H"],
-        minWidth: map["min_W"]);
-  }
+  factory ItemLayout.fromMap(Map<String, dynamic> map) => ItemLayout(
+      startX: map["s_X"],
+      startY: map["s_Y"],
+      width: map["w"],
+      height: map["h"],
+      maxHeight: map["max_H"],
+      maxWidth: map["max_W"],
+      minHeight: map["min_H"],
+      minWidth: map["min_W"]);
 
-  Map<String, dynamic> toMap() {
-    return {
-      if (_haveLocation) "s_X": startX,
-      if (_haveLocation) "s_Y": startY,
-      "w": width,
-      "h": height,
-      "min_W": minWidth,
-      "min_H": minHeight,
-      if (maxHeight != null) "max_H": maxHeight,
-      if (maxWidth != null) "max_W": maxWidth,
-    };
-  }
+  Map<String, dynamic> toMap() => {
+        if (_haveLocation) "s_X": startX,
+        if (_haveLocation) "s_Y": startY,
+        "w": width,
+        "h": height,
+        "min_W": minWidth,
+        "min_H": minHeight,
+        if (maxHeight != null) "max_H": maxHeight,
+        if (maxWidth != null) "max_W": maxWidth,
+      };
 
   @override
-  String toString() {
-    return "startX: $startX , startY: $startY , width: $width , height: $height";
-  }
+  String toString() =>
+      "startX: $startX , startY: $startY , width: $width , height: $height";
 
   bool _haveLocation;
 
@@ -77,18 +72,16 @@ class ItemLayout {
 
   final int? maxWidth, maxHeight;
 
-  ItemLayout copyWithDimension({int? width, int? height}) {
-    return ItemLayout._(
-        startX: startX,
-        startY: startY,
-        width: width ?? this.width,
-        height: height ?? this.height,
-        minHeight: minHeight,
-        maxHeight: maxHeight,
-        maxWidth: maxWidth,
-        minWidth: minWidth,
-        haveLocation: _haveLocation);
-  }
+  ItemLayout copyWithDimension({int? width, int? height}) => ItemLayout._(
+      startX: startX,
+      startY: startY,
+      width: width ?? this.width,
+      height: height ?? this.height,
+      minHeight: minHeight,
+      maxHeight: maxHeight,
+      maxWidth: maxWidth,
+      minWidth: minWidth,
+      haveLocation: _haveLocation);
 
   ItemLayout copyWithStarts({int? startX, int? startY}) {
     var x = startX ?? this.startX;

@@ -8,18 +8,16 @@ class _ViewportDelegate {
       required this.padding,
       required this.crossAxisSpace})
       : resolvedConstrains = BoxConstraints(
-          maxHeight: constraints.maxHeight - padding.vertical,
-          maxWidth: constraints.maxWidth - padding.horizontal,
-        );
+            maxHeight: constraints.maxHeight - padding.vertical,
+            maxWidth: constraints.maxWidth - padding.horizontal);
 
   @override
-  bool operator ==(Object other) {
-    return other is _ViewportDelegate &&
-        constraints == other.constraints &&
-        mainAxisSpace == other.mainAxisSpace &&
-        padding == other.padding &&
-        crossAxisSpace == other.crossAxisSpace;
-  }
+  bool operator ==(Object other) =>
+      other is _ViewportDelegate &&
+      constraints == other.constraints &&
+      mainAxisSpace == other.mainAxisSpace &&
+      padding == other.padding &&
+      crossAxisSpace == other.crossAxisSpace;
 
   final BoxConstraints constraints;
   final BoxConstraints resolvedConstrains;
